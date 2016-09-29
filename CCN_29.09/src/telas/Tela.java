@@ -64,7 +64,7 @@ public class Tela extends JFrame {
 		setTitle("Busca boleto CCN - By Rudsom");
 		setResizable(false);
 
-		setBounds(100, 100, 650, 254);
+		setBounds(100, 100, 627, 254);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		textField_Nome = new JTextField();
