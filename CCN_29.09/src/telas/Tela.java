@@ -101,10 +101,10 @@ public class Tela extends JFrame {
 								textField_Venc.setText(Ret_busca[1]);
 								textField_Str_n_page.setText(Ret_busca[2]);
 								//grava os arquivos so com os nomes buscados
-								Ret_busca[0] = Ret_busca[0].toUpperCase();
-								//if(Ret_busca[0].indexOf(textField_Nome.getText())>0 || Ret_busca[0]=="" ) { //verifica se retornou o nome que tem no campo da busca	
+								//Ret_busca[0] = Ret_busca[0].toUpperCase();
+								if(Ret_busca[0].indexOf(textField_Nome.getText().toUpperCase())>0 || Ret_busca[0]=="" ) { //verifica se retornou o nome que tem no campo da busca	
 									Codigo.consulta_to_Html();
-								//}	
+								}	
 							}
 							Codigo.fimHtml();	
 							Codigo.gravaProp();

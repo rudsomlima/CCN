@@ -137,7 +137,7 @@ public class Codigo {
 	public static void abreHtml() throws IOException {
 		//JOptionPane.showMessageDialog(null, "Concluido! Abra o arquivo.");
 		Desktop.getDesktop().open(new File (myDocumentPath));
-		System.exit(0);
+		//System.exit(0);
 		//Runtime.getRuntime().load("f:\\CCN.html");
 	}
 
