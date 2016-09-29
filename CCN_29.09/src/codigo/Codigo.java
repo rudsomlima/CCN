@@ -21,7 +21,7 @@ public class Codigo {
 	private static String raiz_url = "http://www.sysca.com.br/ver_boleto.php?cod=";
 	private static String pathProp = System.getProperty("user.home") + "\\Documents" + "\\BoletoCCN.properties";
 	private static String myDocumentPath = System.getProperty("user.home") + "\\Documents" + "\\BoletoCCN.html";
-    private static int n_page = 52000;
+    public static int n_page = 52000;
 	public static String Str_n_page = null;
 	//Grava arquivo de configuracao prop
 	static Properties prop = new Properties();
@@ -117,7 +117,7 @@ public class Codigo {
 			s_nome = Integer.toString(n) + " - " + s_nome;
 			System.out.print(nome.html()+" - ");				
 			System.out.println(vencimento.html());	
-			n_page++;
+			//n_page++;
 			Ret_busca[0] = s_nome;
 			Ret_busca[1] = vencimento.html();
 			Ret_busca[2] = Integer.toString(n_page);
@@ -129,7 +129,7 @@ public class Codigo {
 	public static void consulta_to_Html() throws IOException{
 		//gravaArquivo();
 		String url = raiz_url + Integer.toString(n_page);
-		grava_arq.printf("<a href=\"" + url +"\"" + "><br />" + Ret_busca[0] + "</a>");
+		grava_arq.printf("<a href=\"" + url +"\"><br />" + Ret_busca[0] + "</a>");
 		//<a href="url">link text</a>
 	}
 		

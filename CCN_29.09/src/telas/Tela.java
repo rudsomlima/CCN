@@ -102,9 +102,11 @@ public class Tela extends JFrame {
 								textField_Str_n_page.setText(Ret_busca[2]);
 								//grava os arquivos so com os nomes buscados
 								//Ret_busca[0] = Ret_busca[0].toUpperCase();
-								if(Ret_busca[0].indexOf(textField_Nome.getText().toUpperCase())>0 || Ret_busca[0]=="" ) { //verifica se retornou o nome que tem no campo da busca	
+								//if(Ret_busca[0].indexOf(textField_Nome.getText().toUpperCase())>0 | textField_Nome.getText()=="" ) { //verifica se retornou o nome que tem no campo da busca	
 									Codigo.consulta_to_Html();
-								}	
+								//}	
+								Codigo.n_page++;								
+								textField_Str_n_page.setText(Integer.toString(Codigo.n_page));  //atualiza o campo da pagina para a busca do proximo
 							}
 							Codigo.fimHtml();	
 							Codigo.gravaProp();
