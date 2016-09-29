@@ -65,10 +65,11 @@ public class Codigo {
 		prop.store(Oprop, null);
 	}
 	
-	public static void carregaArquivo_N_page() throws IOException {
+	public static void carregaArquivoProp() throws IOException {
 		FileInputStream Iprop = new FileInputStream(pathProp); //instancia de leitura
 		prop.load(Iprop); //carrega o arquivo
-		n_page = Integer.parseInt(prop.getProperty("Str_n_page"));  //pega o numero da pagina
+		Str_n_page = prop.getProperty("Str_n_page"); 
+		//n_page = Integer.parseInt("Str_n_page");  //pega o numero da pagina		
 		Iprop.close();	
 	}
 		
@@ -94,10 +95,10 @@ public class Codigo {
     	//Busca nomes - Entra com o nome a ser buscado e retorna um array com NOME, VALIDADE e N_page
 	public static String[] getNomes(String nome_busca, String Str_n_page) throws IOException {		
 		if(Str_n_page!=null && isFLAG_LOOP()) {  //se não vier nada no campo de pagina e eh a primeira execucao, pega o q estiver no arq properties
-			carregaArquivo_N_page();  //puxa do arquivo já em inteiro
+			carregaArquivoProp();  //puxa do arquivo já em inteiro
 			setFLAG_LOOP(false);
 		}
-		//n_page = Integer.parseInt(Str_n_page);
+		n_page = Integer.parseInt(Str_n_page);
 		Document doc = Jsoup.connect(raiz_url+n_page).get();
 		doc.baseUri();
 		Elements fim_page = doc.select("body > h2");

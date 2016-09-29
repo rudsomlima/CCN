@@ -19,6 +19,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
 import codigo.Codigo;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class Tela extends JFrame {
 
@@ -45,19 +47,20 @@ public class Tela extends JFrame {
 	protected boolean FLAG_BUSCA = true;	
 
 	public Tela() {
-		addContainerListener(new ContainerAdapter() {
+		addComponentListener(new ComponentAdapter() {
 			@Override
-			public void componentAdded(ContainerEvent arg0) {
+			public void componentShown(ComponentEvent arg0) {
 				try {
 					Codigo.criaArqProp();
+					Codigo.carregaArquivoProp();
 					textField_Str_n_page.setText(Codigo.Str_n_page);
-					textField_Str_n_page.setText("teste");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}			
+				}				
 			}
 		});
+
 		setTitle("Busca boleto CCN - By Rudsom");
 		setResizable(false);
 
