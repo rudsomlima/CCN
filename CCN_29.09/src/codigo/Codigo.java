@@ -60,7 +60,7 @@ public class Codigo {
 	
 	//Grava arquivo properties
 	public static void gravaProp() throws IOException {
-		prop.setProperty("Str_n_page", Integer.toString(n_page));
+		prop.setProperty("Str_n_page", Integer.toString(n_page-1));  //n_page-1 pra não gravar a página FIM
 		FileOutputStream Oprop = new FileOutputStream(pathProp); //instancia de gravacao
 		prop.store(Oprop, null);
 	}
@@ -105,7 +105,7 @@ public class Codigo {
 
 		if(fim_page.toString().indexOf("BOLETO")>0) {    //se achar a palavra boleto retorna FIM
 			Ret_busca[0] = "FIM";
-			Ret_busca[1] = "FIM";
+			//Ret_busca[1] = "FIM";
 		}
 		else {
 			//setFLAG_LOOP(true);
