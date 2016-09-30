@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
 
+import org.jsoup.Connection;
+import org.jsoup.Connection.Method;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;  
@@ -60,7 +62,7 @@ public class Codigo {
 	
 	//Grava arquivo properties
 	public static void gravaProp() throws IOException {
-		prop.setProperty("Str_n_page", Integer.toString(n_page-1));  //n_page-1 pra não gravar a página FIM
+		prop.setProperty("Str_n_page", Integer.toString(n_page-1));  //n_page-1 pra nï¿½o gravar a pï¿½gina FIM
 		FileOutputStream Oprop = new FileOutputStream(pathProp); //instancia de gravacao
 		prop.store(Oprop, null);
 	}
@@ -99,10 +101,14 @@ public class Codigo {
 			setFLAG_LOOP(false);
 		}
 		n_page = Integer.parseInt(Str_n_page);
-		Document doc = Jsoup.connect(raiz_url+n_page).get();
+		//Document doc = Jsoup.connect(raiz_url+n_page).get();
+		//novo mÃ©todo para deixar codificaÃ§Ã£o UTF-8
+		Connection connectionTest = Jsoup.connect(raiz_url+n_page)
+				.cookie("cookiereference", "cookievalue")
+				.method(Method.POST);
+		Document doc = Jsoup.parse(new String(connectionTest.execute().bodyAsBytes(),"ISO-8859-15"));
 		doc.baseUri();
 		Elements fim_page = doc.select("body > h2");
-
 		if(fim_page.toString().indexOf("BOLETO")>0) {    //se achar a palavra boleto retorna FIM
 			Ret_busca[0] = "FIM";
 			//Ret_busca[1] = "FIM";

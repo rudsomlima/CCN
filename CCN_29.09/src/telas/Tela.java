@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import codigo.Codigo;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 public class Tela extends JFrame {
 
@@ -45,8 +46,10 @@ public class Tela extends JFrame {
 	private JTextField textField_Result_Nome;
 	protected String[] retb;
 	protected boolean FLAG_BUSCA = true;	
+	private JButton btnBuscar;
 
 	public Tela() {
+		getContentPane().setFocusCycleRoot(true);		
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent arg0) {
@@ -54,6 +57,8 @@ public class Tela extends JFrame {
 					Codigo.criaArqProp();
 					Codigo.carregaArquivoProp();
 					textField_Str_n_page.setText(Codigo.Str_n_page);
+					
+					//btnBuscar.grabFocus(); 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -85,6 +90,7 @@ public class Tela extends JFrame {
 		textField_Result_Nome.setColumns(10);
 
 		JButton btnBuscar = new JButton("Buscar");
+		getRootPane().setDefaultButton(btnBuscar);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Busca o nome
@@ -224,6 +230,7 @@ public class Tela extends JFrame {
 		);
 		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnSair, btnParar, btnBuscar});
 		getContentPane().setLayout(groupLayout);
+		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{textField_Nome, textField_Str_n_page, btnBuscar, btnParar, btnSair}));
 
 }
 
