@@ -129,7 +129,7 @@ public class Codigo {
 	public static void consulta_to_Html() throws IOException{
 		//gravaArquivo();
 		String url = raiz_url + Integer.toString(n_page);
-		grava_arq.printf("<a href=\"" + url +"\"><br />" + Ret_busca[0] + "</a>");
+		grava_arq.printf("<a href=\"" + url +"\"><br />" + Ret_busca[0] + " - " + Ret_busca[1] + "</a>");
 		//<a href="url">link text</a>
 	}
 		

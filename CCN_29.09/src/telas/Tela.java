@@ -64,13 +64,14 @@ public class Tela extends JFrame {
 		setTitle("Busca boleto CCN - By Rudsom");
 		setResizable(false);
 
-		setBounds(100, 100, 627, 254);
+		setBounds(100, 100, 627, 280);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		textField_Nome = new JTextField();
 		textField_Nome.setColumns(10);
 
 		textField_Venc = new JTextField();
+		textField_Venc.setEditable(false);
 		textField_Venc.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_Venc.setColumns(10);
 
@@ -80,6 +81,7 @@ public class Tela extends JFrame {
 		textField_Str_n_page.setColumns(10);
 
 		textField_Result_Nome = new JTextField();
+		textField_Result_Nome.setEditable(false);
 		textField_Result_Nome.setColumns(10);
 
 		JButton btnBuscar = new JButton("Buscar");
@@ -102,9 +104,9 @@ public class Tela extends JFrame {
 								textField_Str_n_page.setText(Ret_busca[2]);
 								//grava os arquivos so com os nomes buscados
 								//Ret_busca[0] = Ret_busca[0].toUpperCase();
-								//if(Ret_busca[0].indexOf(textField_Nome.getText().toUpperCase())>0 | textField_Nome.getText()=="" ) { //verifica se retornou o nome que tem no campo da busca	
+								if(Ret_busca[0].indexOf(textField_Nome.getText().toUpperCase())>0 | textField_Nome.getText()=="" ) { //verifica se retornou o nome que tem no campo da busca	
 									Codigo.consulta_to_Html();
-								//}	
+								}	
 								Codigo.n_page++;								
 								textField_Str_n_page.setText(Integer.toString(Codigo.n_page));  //atualiza o campo da pagina para a busca do proximo
 							}
@@ -155,73 +157,72 @@ public class Tela extends JFrame {
 		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(26)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(textField_Nome, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNome))
-						.addGap(33)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(textField_Str_n_page, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-								.addComponent(textField_Venc, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
-						.addContainerGap(54, Short.MAX_VALUE))
+					.addGap(26)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textField_Nome, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNome))
+					.addGap(33)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textField_Str_n_page, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+						.addComponent(textField_Venc, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+					.addContainerGap(54, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(480)
-						.addComponent(lblVencimento, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-						.addContainerGap(54, Short.MAX_VALUE))
+					.addGap(480)
+					.addComponent(lblVencimento, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+					.addContainerGap(54, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(480)
-						.addComponent(lblIndice, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-						.addContainerGap(64, Short.MAX_VALUE))
+					.addGap(480)
+					.addComponent(lblIndice, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+					.addContainerGap(64, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(26)
-						.addComponent(lblNomes, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-						.addGap(529))
+					.addGap(26)
+					.addComponent(lblNomes, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addGap(529))
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(26)
-						.addComponent(textField_Result_Nome, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
-						.addGap(197))
-				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(26)
-						.addComponent(btnBuscar)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnParar)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(btnSair)
-						.addContainerGap(411, Short.MAX_VALUE))
-				);
+					.addGap(26)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnBuscar)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnParar)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnSair))
+						.addComponent(textField_Result_Nome, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE))
+					.addGap(174))
+		);
 		groupLayout.setVerticalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(25)
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(lblNome)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(textField_Nome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(lblIndice)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(textField_Str_n_page, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addGap(41)
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(lblNomes)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(textField_Result_Nome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(lblVencimento)
-										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(textField_Venc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addGap(29)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE, false)
-								.addComponent(btnBuscar)
-								.addComponent(btnParar)
-								.addComponent(btnSair))
-						.addContainerGap(27, Short.MAX_VALUE))
-				);
-		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnBuscar, btnSair, btnParar});
+					.addGap(25)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblNome)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_Nome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblIndice)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_Str_n_page, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(41)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblNomes)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_Result_Nome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblVencimento)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_Venc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE, false)
+						.addComponent(btnBuscar)
+						.addComponent(btnParar)
+						.addComponent(btnSair))
+					.addGap(38))
+		);
+		groupLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnSair, btnParar, btnBuscar});
 		getContentPane().setLayout(groupLayout);
 
 }
